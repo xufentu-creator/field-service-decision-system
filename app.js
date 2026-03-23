@@ -33,27 +33,28 @@ function goUpload() {
 }
 
 async function goResult() {
-  try {
-    const response = await fetch("http://localhost:3000/api/generate-options", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        currentIssue: document.querySelectorAll("textarea")[0].value,
-        desiredResult: document.querySelectorAll("textarea")[1].value,
-        budgetPreference: "balanced",
-        stylePreference: "modern"
-      })
-    });
+  const currentIssue = document.getElementById("problemInput").value;
+  const desiredResult = document.getElementById("goalInput").value;
 
-    const data = await response.json();
-    localStorage.setItem("optionsData", JSON.stringify(data));
-    window.location.href = "result.html";
-  } catch (error) {
-    console.error("Error generating options:", error);
-    alert("Failed to connect to backend.");
-  }
+  const response = await fetch("http://localhost:3000/api/generate-options", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      imageUrl: "",
+      currentIssue,
+      desiredResult,
+      budgetPreference: "balanced",
+      stylePreference: "clean"
+    })
+  });
+
+  const data = await response.json();
+
+  localStorage.setItem("optionsData", JSON.stringify(data));
+
+  window.location.href = "result.html";
 }
 
 window.onload = setLang;
