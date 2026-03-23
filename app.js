@@ -15,13 +15,16 @@ function setLang() {
     document.getElementById("generateBtn").innerText = c.upload.generate;
   }
 
+  // 结果页不要再用默认内容覆盖后端数据
   if (document.getElementById("resultTitle")) {
-    document.getElementById("resultTitle").innerText = c.result.title;
-    document.getElementById("current").innerText = c.result.current;
-    document.getElementById("optionA").innerText = c.result.optionA;
-    document.getElementById("optionB").innerText = c.result.optionB;
-    document.getElementById("optionC").innerText = c.result.optionC;
-    document.getElementById("boundary").innerText = c.result.boundary;
+    if (!localStorage.getItem("optionsData")) {
+      document.getElementById("resultTitle").innerText = c.result.title;
+      document.getElementById("current").innerText = c.result.current;
+      document.getElementById("optionA").innerText = c.result.optionA;
+      document.getElementById("optionB").innerText = c.result.optionB;
+      document.getElementById("optionC").innerText = c.result.optionC;
+      document.getElementById("boundary").innerText = c.result.boundary;
+    }
   }
 }
 
@@ -30,24 +33,27 @@ function goUpload() {
 }
 
 async function goResult() {
-  const response = await fetch("http://localhost:3000/api/generate-options", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      currentIssue: document.querySelectorAll("textarea")[0].value,
-      desiredResult: document.querySelectorAll("textarea")[1].value,
-      budgetPreference: "balanced",
-      stylePreference: "modern"
-    })
-  });
+  try {
+    const response = await fetch("http://localhost:3000/api/generate-options", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        currentIssue: document.querySelectorAll("textarea")[0].value,
+        desiredResult: document.querySelectorAll("textarea")[1].value,
+        budgetPreference: "balanced",
+        stylePreference: "modern"
+      })
+    });
 
-  const data = await response.json();
-
-  localStorage.setItem("optionsData", JSON.stringify(data));
-
-  window.location.href = "result.html";
+    const data = await response.json();
+    localStorage.setItem("optionsData", JSON.stringify(data));
+    window.location.href = "result.html";
+  } catch (error) {
+    console.error("Error generating options:", error);
+    alert("Failed to connect to backend.");
+  }
 }
 
 window.onload = setLang;
