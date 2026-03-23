@@ -13,13 +13,13 @@
 
     <div class="card">
       <h3 id="current">Current Condition</h3>
-      <img src="https://via.placeholder.com/600" alt="Current space">
+      <img id="currentImage" src="https://via.placeholder.com/600" alt="Current space">
       <p id="currentDesc">Based on your uploaded problem and goal.</p>
     </div>
 
     <div class="card">
       <h3 id="optionA">Option A</h3>
-      <img src="https://via.placeholder.com/600" alt="Option A">
+      <img id="imgA" src="https://via.placeholder.com/600" alt="Option A">
       <p id="priceA">$150–300</p>
       <p id="descA">Description will appear here.</p>
       <button id="chooseA">Choose Option A</button>
@@ -27,7 +27,7 @@
 
     <div class="card">
       <h3 id="optionB">Option B</h3>
-      <img src="https://via.placeholder.com/600" alt="Option B">
+      <img id="imgB" src="https://via.placeholder.com/600" alt="Option B">
       <p id="priceB">$400–700</p>
       <p id="descB">Description will appear here.</p>
       <button id="chooseB">Choose Option B</button>
@@ -35,7 +35,7 @@
 
     <div class="card">
       <h3 id="optionC">Option C</h3>
-      <img src="https://via.placeholder.com/600" alt="Option C">
+      <img id="imgC" src="https://via.placeholder.com/600" alt="Option C">
       <p id="priceC">$900+</p>
       <p id="descC">Description will appear here.</p>
       <button id="chooseC">Choose Option C</button>
@@ -48,7 +48,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const saved = localStorage.getItem("optionsData");
-      console.log("DATA:", saved);
 
       if (!saved) {
         document.getElementById("boundary").innerText = "No data returned from backend.";
@@ -56,34 +55,64 @@
       }
 
       const data = JSON.parse(saved);
-      console.log("PARSED DATA:", data);
       const options = data.options || [];
 
+      // 当前说明
+      document.getElementById("currentDesc").innerText =
+        "The system generated options based on your uploaded issue and desired result.";
+
+      // 系统边界提示
+      document.getElementById("boundary").innerText =
+        data.boundaryNote ||
+        "The system provides structured options. Final judgment and choice remain with the user.";
+
+      // Option A
       if (options[0]) {
         document.getElementById("optionA").innerText = options[0].name || "Option A";
-        document.getElementById("descA").innerText = options[0].description || "No description available.";
-        if (options[0].price) {
-          document.getElementById("priceA").innerText = options[0].price;
-        }
+        document.getElementById("descA").innerText =
+          options[0].description || "No description available.";
+        document.getElementById("priceA").innerText =
+          options[0].priceRange || "";
+        document.getElementById("imgA").src =
+          options[0].previewImage || "https://via.placeholder.com/600";
+        document.getElementById("chooseA").innerText = "I choose this option";
+        document.getElementById("chooseA").onclick = () => {
+          localStorage.setItem("selectedOption", JSON.stringify(options[0]));
+          window.location.href = "booking.html";
+        };
       }
 
+      // Option B
       if (options[1]) {
         document.getElementById("optionB").innerText = options[1].name || "Option B";
-        document.getElementById("descB").innerText = options[1].description || "No description available.";
-        if (options[1].price) {
-          document.getElementById("priceB").innerText = options[1].price;
-        }
+        document.getElementById("descB").innerText =
+          options[1].description || "No description available.";
+        document.getElementById("priceB").innerText =
+          options[1].priceRange || "";
+        document.getElementById("imgB").src =
+          options[1].previewImage || "https://via.placeholder.com/600";
+        document.getElementById("chooseB").innerText = "I choose this option";
+        document.getElementById("chooseB").onclick = () => {
+          localStorage.setItem("selectedOption", JSON.stringify(options[1]));
+          window.location.href = "booking.html";
+        };
       }
 
+      // Option C
       if (options[2]) {
         document.getElementById("optionC").innerText = options[2].name || "Option C";
-        document.getElementById("descC").innerText = options[2].description || "No description available.";
-        if (options[2].price) {
-          document.getElementById("priceC").innerText = options[2].price;
-        }
+        document.getElementById("descC").innerText =
+          options[2].description || "No description available.";
+        document.getElementById("priceC").innerText =
+          options[2].priceRange || "";
+        document.getElementById("imgC").src =
+          options[2].previewImage || "https://via.placeholder.com/600";
+        document.getElementById("chooseC").innerText = "I choose this option";
+        document.getElementById("chooseC").onclick = () => {
+          localStorage.setItem("selectedOption", JSON.stringify(options[2]));
+          window.location.href = "booking.html";
+        };
       }
-
-      document.getElementById("boundary").innerText = data.boundaryNote || "";
     });
   </script>
 
