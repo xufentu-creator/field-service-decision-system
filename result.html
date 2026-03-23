@@ -4,96 +4,141 @@
   <meta charset="UTF-8">
   <title>Result</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .option-img {
+      width: 100%;
+      max-width: 520px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      margin: 16px 0;
+      background: #f0f0f0;
+    }
+
+    .result-btn {
+      display: inline-block;
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .muted {
+      color: #666;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
 
-    <h1>Your Recommended Options</h1>
+    <h1 id="resultTitle">Your Recommended Options</h1>
 
-    <!-- 当前 -->
     <div class="card">
-      <h3>Current Condition</h3>
-      <img id="currentImage" src="https://via.placeholder.com/600">
-      <p id="currentDesc"></p>
+      <h3 id="currentTitle">Current Condition</h3>
+      <img id="currentImage" class="option-img" alt="Current space">
+      <p id="currentDesc" class="muted">Based on your uploaded problem and goal.</p>
     </div>
 
-    <!-- A -->
     <div class="card">
-      <h3 id="titleA"></h3>
-      <img id="imgA">
-      <p id="priceA"></p>
-      <p id="descA"></p>
-      <button id="chooseA">Choose</button>
+      <h3 id="optionA">Option A</h3>
+      <img id="imgA" class="option-img" alt="Option A">
+      <p id="priceA">$150–300</p>
+      <p id="descA" class="muted">Description will appear here.</p>
+      <button id="chooseA" class="result-btn">Choose Option A</button>
     </div>
 
-    <!-- B -->
     <div class="card">
-      <h3 id="titleB"></h3>
-      <img id="imgB">
-      <p id="priceB"></p>
-      <p id="descB"></p>
-      <button id="chooseB">Choose</button>
+      <h3 id="optionB">Option B</h3>
+      <img id="imgB" class="option-img" alt="Option B">
+      <p id="priceB">$400–700</p>
+      <p id="descB" class="muted">Description will appear here.</p>
+      <button id="chooseB" class="result-btn">Choose Option B</button>
     </div>
 
-    <!-- C -->
     <div class="card">
-      <h3 id="titleC"></h3>
-      <img id="imgC">
-      <p id="priceC"></p>
-      <p id="descC"></p>
-      <button id="chooseC">Choose</button>
+      <h3 id="optionC">Option C</h3>
+      <img id="imgC" class="option-img" alt="Option C">
+      <p id="priceC">$900+</p>
+      <p id="descC" class="muted">Description will appear here.</p>
+      <button id="chooseC" class="result-btn">Choose Option C</button>
     </div>
 
-    <p id="boundary"></p>
+    <p id="boundary" class="muted"></p>
 
   </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+  <script>
+    function makePlaceholder(label) {
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="900" height="500">
+          <rect width="100%" height="100%" fill="#f2f2f2"/>
+          <rect x="40" y="40" width="820" height="420" rx="18" fill="#e8e8e8"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+                font-family="Arial, sans-serif" font-size="34" fill="#555">
+            ${label}
+          </text>
+        </svg>
+      `;
+      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    }
 
-  const saved = localStorage.getItem("optionsData");
+    function setOption(option, titleId, imgId, priceId, descId, btnId) {
+      if (!option) return;
 
-  if (!saved) {
-    document.getElementById("boundary").innerText = "No data";
-    return;
-  }
+      document.getElementById(titleId).innerText =
+        option.name || "Option";
 
-  const data = JSON.parse(saved);
-  const options = data.options || [];
+      document.getElementById(priceId).innerText =
+        option.priceRange || "";
 
-  document.getElementById("currentDesc").innerText =
-    "Generated based on your input";
+      document.getElementById(descId).innerText =
+        option.description || "No description available.";
 
-  document.getElementById("boundary").innerText =
-    data.boundaryNote || "";
+      const img = document.getElementById(imgId);
+      img.src = makePlaceholder(option.name || "Preview");
+      img.alt = option.name || "Preview";
 
-  // A
-  if (options[0]) {
-    document.getElementById("titleA").innerText = options[0].name;
-    document.getElementById("descA").innerText = options[0].description;
-    document.getElementById("priceA").innerText = options[0].priceRange;
-    document.getElementById("imgA").src = options[0].previewImage;
-  }
+      const btn = document.getElementById(btnId);
+      btn.innerText = "I choose this option";
+      btn.onclick = () => {
+        localStorage.setItem("selectedOption", JSON.stringify(option));
+        window.location.href = "booking.html";
+      };
+    }
 
-  // B
-  if (options[1]) {
-    document.getElementById("titleB").innerText = options[1].name;
-    document.getElementById("descB").innerText = options[1].description;
-    document.getElementById("priceB").innerText = options[1].priceRange;
-    document.getElementById("imgB").src = options[1].previewImage;
-  }
+    document.addEventListener("DOMContentLoaded", () => {
+      const saved = localStorage.getItem("optionsData");
+      const userInputs = JSON.parse(localStorage.getItem("userInputs") || "{}");
 
-  // C
-  if (options[2]) {
-    document.getElementById("titleC").innerText = options[2].name;
-    document.getElementById("descC").innerText = options[2].description;
-    document.getElementById("priceC").innerText = options[2].priceRange;
-    document.getElementById("imgC").src = options[2].previewImage;
-  }
+      document.getElementById("currentImage").src = makePlaceholder("Current Condition");
+      document.getElementById("currentDesc").innerText =
+        `Issue: ${userInputs.currentIssue || "N/A"} | Goal: ${userInputs.desiredResult || "N/A"}`;
 
-});
-</script>
+      if (!saved) {
+        document.getElementById("boundary").innerText =
+          "No data returned from backend.";
+        return;
+      }
 
+      const data = JSON.parse(saved);
+      const options = data.options || [];
+
+      setOption(options[0], "optionA", "imgA", "priceA", "descA", "chooseA");
+      setOption(options[1], "optionB", "imgB", "priceB", "descB", "chooseB");
+      setOption(options[2], "optionC", "imgC", "priceC", "descC", "chooseC");
+
+      document.getElementById("boundary").innerText =
+        data.boundaryNote ||
+        "The system provides structured options. Final judgment and choice remain with the user.";
+    });
+  </script>
+
+  <script src="app.js"></script>
 </body>
 </html>
