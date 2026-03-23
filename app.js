@@ -15,56 +15,75 @@ function setLang() {
     document.getElementById("uploadTitle").innerText = c.upload.title;
     document.getElementById("generateBtn").innerText = c.upload.generate;
   }
+
+  if (document.getElementById("resultTitle")) {
+    document.getElementById("resultTitle").innerText = c.result.title;
+  }
+
+  if (document.getElementById("currentTitle")) {
+    document.getElementById("currentTitle").innerText = c.result.current;
+  }
+
+  if (document.getElementById("boundary")) {
+    document.getElementById("boundary").innerText = c.result.boundary;
+  }
 }
 
 function goUpload() {
   window.location.href = "upload.html";
 }
 
-async function goResult() {
+function goResult() {
   const currentIssue = document.getElementById("problemInput")?.value || "";
   const desiredResult = document.getElementById("goalInput")?.value || "";
 
-  try {
-    const response = await fetch("http://localhost:3000/api/generate-options", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+  const mockData = {
+    requestId: "demo-001",
+    options: [
+      {
+        optionId: "A",
+        name: "Basic Repair",
+        priceRange: "$150–300",
+        description: "Simple repair with the lowest cost and fastest turnaround."
       },
-      body: JSON.stringify({
-        imageUrl: "",
-        currentIssue,
-        desiredResult,
-        budgetPreference: "balanced",
-        stylePreference: "clean"
-      })
-    });
+      {
+        optionId: "B",
+        name: "Standard Upgrade",
+        priceRange: "$400–700",
+        description: "Balanced solution with better finish and stronger visual improvement."
+      },
+      {
+        optionId: "C",
+        name: "Premium Finish",
+        priceRange: "$900+",
+        description: "More complete upgrade with higher quality finish and stronger long-term value."
+      }
+    ],
+    boundaryNote:
+      "The system provides structured options. Final judgment and choice remain with the user."
+  };
 
-    const data = await response.json();
+  localStorage.setItem("optionsData", JSON.stringify(mockData));
+  localStorage.setItem(
+    "userInputs",
+    JSON.stringify({
+      currentIssue,
+      desiredResult
+    })
+  );
 
-    localStorage.setItem("optionsData", JSON.stringify(data));
-    localStorage.setItem(
-      "userInputs",
-      JSON.stringify({
-        currentIssue,
-        desiredResult
-      })
-    );
-
-    window.location.href = "result.html";
-  } catch (error) {
-    alert("Failed to connect to backend. Please make sure backend is running on localhost:3000.");
-    console.error(error);
-  }
+  window.location.href = "result.html";
 }
 
-async function submitBooking() {
+function submitBooking() {
   const selectedOptionRaw = localStorage.getItem("selectedOption");
   const optionsDataRaw = localStorage.getItem("optionsData");
 
   if (!selectedOptionRaw || !optionsDataRaw) {
-    document.getElementById("bookingMessage").innerText =
-      "Missing selected option or request data.";
+    const bookingMessage = document.getElementById("bookingMessage");
+    if (bookingMessage) {
+      bookingMessage.innerText = "Missing selected option or request data.";
+    }
     return;
   }
 
@@ -74,37 +93,20 @@ async function submitBooking() {
   const payload = {
     requestId: optionsData.requestId,
     optionId: selectedOption.optionId,
-    customerName: document.getElementById("customerName").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    address: document.getElementById("address").value,
-    preferredDate: document.getElementById("preferredDate").value,
-    preferredTime: document.getElementById("preferredTime").value,
-    notes: document.getElementById("notes").value
+    customerName: document.getElementById("customerName")?.value || "",
+    phone: document.getElementById("phone")?.value || "",
+    email: document.getElementById("email")?.value || "",
+    address: document.getElementById("address")?.value || "",
+    preferredDate: document.getElementById("preferredDate")?.value || "",
+    preferredTime: document.getElementById("preferredTime")?.value || "",
+    notes: document.getElementById("notes")?.value || ""
   };
 
-  try {
-    const response = await fetch("http://localhost:3000/api/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+  console.log("Booking payload:", payload);
 
-    const data = await response.json();
-
-    if (data.success) {
-      document.getElementById("bookingMessage").innerText =
-        "Booking submitted successfully.";
-    } else {
-      document.getElementById("bookingMessage").innerText =
-        data.message || data.error || "Booking failed.";
-    }
-  } catch (error) {
-    document.getElementById("bookingMessage").innerText =
-      "Failed to connect to backend.";
-    console.error(error);
+  const bookingMessage = document.getElementById("bookingMessage");
+  if (bookingMessage) {
+    bookingMessage.innerText = "Booking saved locally for demo.";
   }
 }
 
