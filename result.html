@@ -57,16 +57,13 @@
       const data = JSON.parse(saved);
       const options = data.options || [];
 
-      // 当前说明
       document.getElementById("currentDesc").innerText =
         "The system generated options based on your uploaded issue and desired result.";
 
-      // 系统边界提示
       document.getElementById("boundary").innerText =
         data.boundaryNote ||
         "The system provides structured options. Final judgment and choice remain with the user.";
 
-      // Option A
       if (options[0]) {
         document.getElementById("optionA").innerText = options[0].name || "Option A";
         document.getElementById("descA").innerText =
@@ -74,7 +71,9 @@
         document.getElementById("priceA").innerText =
           options[0].priceRange || "";
         document.getElementById("imgA").src =
-          options[0].previewImage || "https://via.placeholder.com/600";
+          options[0].previewImage && options[0].previewImage.startsWith("http")
+            ? options[0].previewImage
+            : "https://via.placeholder.com/600";
         document.getElementById("chooseA").innerText = "I choose this option";
         document.getElementById("chooseA").onclick = () => {
           localStorage.setItem("selectedOption", JSON.stringify(options[0]));
@@ -82,7 +81,6 @@
         };
       }
 
-      // Option B
       if (options[1]) {
         document.getElementById("optionB").innerText = options[1].name || "Option B";
         document.getElementById("descB").innerText =
@@ -90,7 +88,9 @@
         document.getElementById("priceB").innerText =
           options[1].priceRange || "";
         document.getElementById("imgB").src =
-          options[1].previewImage || "https://via.placeholder.com/600";
+          options[1].previewImage && options[1].previewImage.startsWith("http")
+            ? options[1].previewImage
+            : "https://via.placeholder.com/600";
         document.getElementById("chooseB").innerText = "I choose this option";
         document.getElementById("chooseB").onclick = () => {
           localStorage.setItem("selectedOption", JSON.stringify(options[1]));
@@ -98,7 +98,6 @@
         };
       }
 
-      // Option C
       if (options[2]) {
         document.getElementById("optionC").innerText = options[2].name || "Option C";
         document.getElementById("descC").innerText =
@@ -106,7 +105,9 @@
         document.getElementById("priceC").innerText =
           options[2].priceRange || "";
         document.getElementById("imgC").src =
-          options[2].previewImage || "https://via.placeholder.com/600";
+          options[2].previewImage && options[2].previewImage.startsWith("http")
+            ? options[2].previewImage
+            : "https://via.placeholder.com/600";
         document.getElementById("chooseC").innerText = "I choose this option";
         document.getElementById("chooseC").onclick = () => {
           localStorage.setItem("selectedOption", JSON.stringify(options[2]));
