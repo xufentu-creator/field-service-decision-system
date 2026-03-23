@@ -8,17 +8,23 @@
 
 <body>
   <div class="container">
+    <div class="card">
+      <h1 id="uploadTitle">Upload and describe your goal</h1>
+      <p class="muted">Take a photo of the current condition and describe what you want to change.</p>
 
-    <h1 id="uploadTitle">Upload the space and describe your goal</h1>
+      <label for="photoInput" class="upload-box">
+        <span>📷 Take or upload a photo</span>
+      </label>
+      <input id="photoInput" type="file" accept="image/*" capture="environment" style="display:none;">
 
-    <input id="photoInput" type="file"><br><br>
+      <img id="photoPreview" style="display:none;width:100%;max-width:520px;border-radius:12px;margin:16px 0;" alt="Preview">
 
-    <textarea id="problemInput" placeholder="Describe problem..." rows="3" style="width:100%;padding:12px;"></textarea><br><br>
+      <textarea id="problemInput" placeholder="What is the current problem?" rows="3"></textarea>
 
-    <textarea id="goalInput" placeholder="Describe goal..." rows="3" style="width:100%;padding:12px;"></textarea><br><br>
+      <textarea id="goalInput" placeholder="What would you like it to become?" rows="3"></textarea>
 
-    <button onclick="goResult()" id="generateBtn">Generate options</button>
-
+      <button onclick="goResult()" id="generateBtn">Generate options</button>
+    </div>
   </div>
 
   <script src="content.js"></script>
