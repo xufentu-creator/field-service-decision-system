@@ -29,7 +29,24 @@ function goUpload() {
   window.location.href = "upload.html";
 }
 
-function goResult() {
+async function goResult() {
+  const response = await fetch("http://localhost:3000/api/generate-options", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      currentIssue: document.querySelectorAll("textarea")[0].value,
+      desiredResult: document.querySelectorAll("textarea")[1].value,
+      budgetPreference: "balanced",
+      stylePreference: "modern"
+    })
+  });
+
+  const data = await response.json();
+
+  localStorage.setItem("optionsData", JSON.stringify(data));
+
   window.location.href = "result.html";
 }
 
