@@ -9,114 +9,91 @@
 <body>
   <div class="container">
 
-    <h1 id="resultTitle">Your Recommended Options</h1>
+    <h1>Your Recommended Options</h1>
 
+    <!-- 当前 -->
     <div class="card">
-      <h3 id="current">Current Condition</h3>
-      <img id="currentImage" src="https://via.placeholder.com/600" alt="Current space">
-      <p id="currentDesc">Based on your uploaded problem and goal.</p>
+      <h3>Current Condition</h3>
+      <img id="currentImage" src="https://via.placeholder.com/600">
+      <p id="currentDesc"></p>
     </div>
 
+    <!-- A -->
     <div class="card">
-      <h3 id="optionA">Option A</h3>
-      <img id="imgA" src="https://via.placeholder.com/600" alt="Option A">
-      <p id="priceA">$150–300</p>
-      <p id="descA">Description will appear here.</p>
-      <button id="chooseA">Choose Option A</button>
+      <h3 id="titleA"></h3>
+      <img id="imgA">
+      <p id="priceA"></p>
+      <p id="descA"></p>
+      <button id="chooseA">Choose</button>
     </div>
 
+    <!-- B -->
     <div class="card">
-      <h3 id="optionB">Option B</h3>
-      <img id="imgB" src="https://via.placeholder.com/600" alt="Option B">
-      <p id="priceB">$400–700</p>
-      <p id="descB">Description will appear here.</p>
-      <button id="chooseB">Choose Option B</button>
+      <h3 id="titleB"></h3>
+      <img id="imgB">
+      <p id="priceB"></p>
+      <p id="descB"></p>
+      <button id="chooseB">Choose</button>
     </div>
 
+    <!-- C -->
     <div class="card">
-      <h3 id="optionC">Option C</h3>
-      <img id="imgC" src="https://via.placeholder.com/600" alt="Option C">
-      <p id="priceC">$900+</p>
-      <p id="descC">Description will appear here.</p>
-      <button id="chooseC">Choose Option C</button>
+      <h3 id="titleC"></h3>
+      <img id="imgC">
+      <p id="priceC"></p>
+      <p id="descC"></p>
+      <button id="chooseC">Choose</button>
     </div>
 
     <p id="boundary"></p>
 
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const saved = localStorage.getItem("optionsData");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-      if (!saved) {
-        document.getElementById("boundary").innerText = "No data returned from backend.";
-        return;
-      }
+  const saved = localStorage.getItem("optionsData");
 
-      const data = JSON.parse(saved);
-      const options = data.options || [];
+  if (!saved) {
+    document.getElementById("boundary").innerText = "No data";
+    return;
+  }
 
-      document.getElementById("currentDesc").innerText =
-        "The system generated options based on your uploaded issue and desired result.";
+  const data = JSON.parse(saved);
+  const options = data.options || [];
 
-      document.getElementById("boundary").innerText =
-        data.boundaryNote ||
-        "The system provides structured options. Final judgment and choice remain with the user.";
+  document.getElementById("currentDesc").innerText =
+    "Generated based on your input";
 
-      if (options[0]) {
-        document.getElementById("optionA").innerText = options[0].name || "Option A";
-        document.getElementById("descA").innerText =
-          options[0].description || "No description available.";
-        document.getElementById("priceA").innerText =
-          options[0].priceRange || "";
-        document.getElementById("imgA").src =
-          options[0].previewImage && options[0].previewImage.startsWith("http")
-            ? options[0].previewImage
-            : "https://via.placeholder.com/600";
-        document.getElementById("chooseA").innerText = "I choose this option";
-        document.getElementById("chooseA").onclick = () => {
-          localStorage.setItem("selectedOption", JSON.stringify(options[0]));
-          window.location.href = "booking.html";
-        };
-      }
+  document.getElementById("boundary").innerText =
+    data.boundaryNote || "";
 
-      if (options[1]) {
-        document.getElementById("optionB").innerText = options[1].name || "Option B";
-        document.getElementById("descB").innerText =
-          options[1].description || "No description available.";
-        document.getElementById("priceB").innerText =
-          options[1].priceRange || "";
-        document.getElementById("imgB").src =
-          options[1].previewImage && options[1].previewImage.startsWith("http")
-            ? options[1].previewImage
-            : "https://via.placeholder.com/600";
-        document.getElementById("chooseB").innerText = "I choose this option";
-        document.getElementById("chooseB").onclick = () => {
-          localStorage.setItem("selectedOption", JSON.stringify(options[1]));
-          window.location.href = "booking.html";
-        };
-      }
+  // A
+  if (options[0]) {
+    document.getElementById("titleA").innerText = options[0].name;
+    document.getElementById("descA").innerText = options[0].description;
+    document.getElementById("priceA").innerText = options[0].priceRange;
+    document.getElementById("imgA").src = options[0].previewImage;
+  }
 
-      if (options[2]) {
-        document.getElementById("optionC").innerText = options[2].name || "Option C";
-        document.getElementById("descC").innerText =
-          options[2].description || "No description available.";
-        document.getElementById("priceC").innerText =
-          options[2].priceRange || "";
-        document.getElementById("imgC").src =
-          options[2].previewImage && options[2].previewImage.startsWith("http")
-            ? options[2].previewImage
-            : "https://via.placeholder.com/600";
-        document.getElementById("chooseC").innerText = "I choose this option";
-        document.getElementById("chooseC").onclick = () => {
-          localStorage.setItem("selectedOption", JSON.stringify(options[2]));
-          window.location.href = "booking.html";
-        };
-      }
-    });
-  </script>
+  // B
+  if (options[1]) {
+    document.getElementById("titleB").innerText = options[1].name;
+    document.getElementById("descB").innerText = options[1].description;
+    document.getElementById("priceB").innerText = options[1].priceRange;
+    document.getElementById("imgB").src = options[1].previewImage;
+  }
 
-  <script src="app.js"></script>
+  // C
+  if (options[2]) {
+    document.getElementById("titleC").innerText = options[2].name;
+    document.getElementById("descC").innerText = options[2].description;
+    document.getElementById("priceC").innerText = options[2].priceRange;
+    document.getElementById("imgC").src = options[2].previewImage;
+  }
+
+});
+</script>
+
 </body>
 </html>
