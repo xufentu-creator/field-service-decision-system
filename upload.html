@@ -7,22 +7,21 @@
 </head>
 
 <body>
-<div class="container">
+  <div class="container">
 
-  <h1 id="uploadTitle"></h1>
+    <h1 id="uploadTitle">Upload the space and describe your goal</h1>
 
-  <input id="photoInput" type="file"><br><br>
+    <input id="photoInput" type="file"><br><br>
 
-<textarea id="problemInput" placeholder="Describe problem..." rows="3"></textarea><br><br>
+    <textarea id="problemInput" placeholder="Describe problem..." rows="3" style="width:100%;padding:12px;"></textarea><br><br>
 
-<textarea id="goalInput" placeholder="Describe goal..." rows="3"></textarea><br><br>
+    <textarea id="goalInput" placeholder="Describe goal..." rows="3" style="width:100%;padding:12px;"></textarea><br><br>
 
-  <button onclick="goResult()" id="generateBtn"></button>
+    <button onclick="goResult()" id="generateBtn">Generate options</button>
 
-</div>
+  </div>
 
-<script src="content.js"></script>
-<script src="app.js"></script>
-
+  <script src="content.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
