@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Booking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Book a Service</h1>
+    <p>Review your choice and submit your booking.</p>
+
+    <div class="card">
+      <h3 id="selectedName">Selected Option</h3>
+      <p id="selectedPrice"></p>
+      <p id="selectedDesc"></p>
+    </div>
+
+    <div class="card">
+      <input id="customerName" type="text" placeholder="Your name" style="width:100%;padding:12px;margin-bottom:12px;">
+      <input id="phone" type="text" placeholder="Phone" style="width:100%;padding:12px;margin-bottom:12px;">
+      <input id="email" type="email" placeholder="Email" style="width:100%;padding:12px;margin-bottom:12px;">
+      <input id="address" type="text" placeholder="Address" style="width:100%;padding:12px;margin-bottom:12px;">
+      <input id="preferredDate" type="date" style="width:100%;padding:12px;margin-bottom:12px;">
+      <select id="preferredTime" style="width:100%;padding:12px;margin-bottom:12px;">
+        <option value="">Select time</option>
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+        <option value="Evening">Evening</option>
+      </select>
+      <textarea id="notes" placeholder="Notes" rows="4" style="width:100%;padding:12px;margin-bottom:12px;"></textarea>
+
+      <button onclick="submitBooking()">Submit Booking</button>
+      <p id="bookingMessage" style="margin-top:16px;"></p>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const selected = localStorage.getItem("selectedOption");
+
+      if (!selected) {
+        document.getElementById("selectedDesc").innerText =
+          "No option selected yet.";
+        return;
+      }
+
+      const option = JSON.parse(selected);
+
+      document.getElementById("selectedName").innerText =
+        option.name || "Selected Option";
+      document.getElementById("selectedPrice").innerText =
+        option.priceRange || "";
+      document.getElementById("selectedDesc").innerText =
+        option.description || "";
+    });
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>
