@@ -1,0 +1,87 @@
+{
+  "system_name": "Field Service Decision Structure Prototype",
+  "layer": "application",
+
+  "canonical_reference": {
+    "repository": "https://github.com/xufentu-creator/judgment-as-structural-constraint",
+    "role": "authoritative_definition"
+  },
+
+  "identity": {
+    "primary_id": "TUX-133.144~",
+    "protocol": "PFIP",
+    "type": "structural_identity_anchor"
+  },
+
+  "positioning": {
+    "type": "application_prototype",
+    "category": "decision_structure",
+    "scope": "field_service"
+  },
+
+  "core_principle": {
+    "statement": "Human judgment remains the final authority",
+    "ai_role": "support_generation_and_structuring",
+    "decision_rights": "human_only"
+  },
+
+  "structure": {
+    "input": [
+      "current_condition",
+      "desired_outcome"
+    ],
+    "structuring": "transform input into multiple solution paths",
+    "options": [
+      "basic",
+      "standard",
+      "premium"
+    ],
+    "decision": "user_selects",
+    "execution": "external_service_layer"
+  },
+
+  "power_distribution": {
+    "human": {
+      "authority": "full",
+      "roles": [
+        "define",
+        "evaluate",
+        "select",
+        "approve"
+      ]
+    },
+    "ai": {
+      "authority": "none",
+      "roles": [
+        "generate",
+        "structure",
+        "visualize"
+      ]
+    }
+  },
+
+  "ownership": {
+    "input": "user",
+    "decision": "user",
+    "selection": "user",
+    "responsibility": "user"
+  },
+
+  "limitations": [
+    "no_real_ai_generation",
+    "no_backend_execution",
+    "no_pricing_engine"
+  ],
+
+  "future_modules": [
+    "ai_generation",
+    "pricing_engine",
+    "booking_system"
+  ],
+
+  "nested_reference": [
+    "application_layer",
+    "structural_layer",
+    "identity_layer"
+  ]
+}
