@@ -98,20 +98,20 @@ textarea {
 .slider {
   display: flex;
   overflow-x: auto;
-  gap: 10px;
+  gap: 12px;
   padding: 10px 0;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
 .slider .option-img {
-  width: 85%;
-  max-width: 85%;
+  width: 100%;
+  max-width: 100%;
   height: auto;
   flex-shrink: 0;
-  scroll-snap-align: start;
-  border-radius: 10px;
-  margin: 0;
+  scroll-snap-align: center;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .note {
