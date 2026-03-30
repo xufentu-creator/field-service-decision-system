@@ -1,77 +1,96 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
-  background: #f7f7f7;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
   color: #111;
 }
 
 .container {
-  max-width: 800px;
-  margin: auto;
-  padding: 40px 20px;
+  width: 92%;
+  max-width: 760px;
+  margin: 40px auto;
 }
 
 h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: 34px;
+  line-height: 1.2;
+  margin-bottom: 12px;
 }
 
 p {
-  color: #555;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
 button {
-  background: black;
-  color: white;
+  display: inline-block;
+  background: #111;
+  color: #fff;
   border: none;
-  padding: 12px 20px;
-  margin-top: 20px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 12px;
+}
+
+button:hover {
+  opacity: 0.92;
 }
 
 .card {
-  background: white;
+  background: #fff;
+  border-radius: 16px;
   padding: 20px;
-  margin-top: 20px;
-  border-radius: 10px;
+  margin: 18px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
-img {
+.hero-img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 16px;
+  display: block;
+  margin: 22px 0;
 }
 
-.upload-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 140px;
-  border: 2px dashed #bbb;
-  border-radius: 14px;
-  background: #fafafa;
-  cursor: pointer;
-  margin: 20px 0;
-  font-size: 18px;
+.option-img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 12px 0;
+  display: block;
 }
 
+.preview-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 14px;
+}
+
+input[type="file"],
 textarea {
   width: 100%;
-  padding: 14px;
-  margin: 14px 0;
-  border: 1px solid #ccc;
-  border-radius: 12px;
   font-size: 16px;
+  padding: 12px;
+  margin-top: 10px;
   box-sizing: border-box;
 }
 
-.card {
-  background: white;
-  padding: 28px;
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-}
-.option-img {
-  width: 100%;
+textarea {
   border-radius: 10px;
-  margin: 10px 0;
+  border: 1px solid #ccc;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.label-text {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.section-intro {
+  margin: 10px 0 6px 0;
+  font-weight: bold;
 }
