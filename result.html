@@ -1,34 +1,65 @@
-<div class="card">
-  <h3>Option A — Basic Upgrade</h3>
-  <img src="https://via.placeholder.com/500x250" class="option-img">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <p>✔ Improve cleanliness and clarity</p>
-  <p>✔ Low-cost visual adjustment</p>
-  <p><strong>Estimated: $150–300</strong></p>
+<body>
+  <div class="container">
 
-  <button>Select This Option</button>
-</div>
+    <h1 id="resultTitle"></h1>
+    <p id="resultSubtitle"></p>
 
+    <div class="card">
+      <h3 id="currentTitle"></h3>
+      <img id="currentImage" src="https://via.placeholder.com/900x420?text=Your+Uploaded+Photo" alt="Current space" class="option-img">
+      <p id="currentDesc"></p>
+    </div>
 
-<div class="card">
-  <h3>Option B — Recommended Upgrade</h3>
-  <img src="https://via.placeholder.com/500x250" class="option-img">
+    <p class="section-intro" id="optionsIntro"></p>
 
-  <p>✔ Improve visual appeal</p>
-  <p>✔ Better customer attraction</p>
-  <p><strong>Estimated: $400–700</strong></p>
+    <div class="card">
+      <h3 id="optionATitle"></h3>
+      <img src="https://via.placeholder.com/900x420?text=Option+A+Basic+Upgrade" class="option-img" alt="Option A">
+      <p id="optionADesc1"></p>
+      <p id="optionADesc2"></p>
+      <p><strong id="optionAPrice"></strong></p>
 
-  <button>Select This Option</button>
-</div>
+      <a href="https://cal.com/bb369tech/space-upgrade-decision-consultation-空间升级决策咨询" target="_blank">
+        <button id="optionABtn"></button>
+      </a>
+    </div>
 
+    <div class="card">
+      <h3 id="optionBTitle"></h3>
+      <img src="https://via.placeholder.com/900x420?text=Option+B+Recommended+Upgrade" class="option-img" alt="Option B">
+      <p id="optionBDesc1"></p>
+      <p id="optionBDesc2"></p>
+      <p><strong id="optionBPrice"></strong></p>
 
-<div class="card">
-  <h3>Option C — Premium Upgrade</h3>
-  <img src="https://via.placeholder.com/500x250" class="option-img">
+      <a href="https://cal.com/bb369tech/space-upgrade-decision-consultation-空间升级决策咨询" target="_blank">
+        <button id="optionBBtn"></button>
+      </a>
+    </div>
 
-  <p>✔ Full redesign</p>
-  <p>✔ High-end visual transformation</p>
-  <p><strong>Estimated: $900+</strong></p>
+    <div class="card">
+      <h3 id="optionCTitle"></h3>
+      <img src="https://via.placeholder.com/900x420?text=Option+C+Premium+Upgrade" class="option-img" alt="Option C">
+      <p id="optionCDesc1"></p>
+      <p id="optionCDesc2"></p>
+      <p><strong id="optionCPrice"></strong></p>
 
-  <button>Select This Option</button>
-</div>
+      <a href="https://cal.com/bb369tech/space-upgrade-decision-consultation-空间升级决策咨询" target="_blank">
+        <button id="optionCBtn"></button>
+      </a>
+    </div>
+
+  </div>
+
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
