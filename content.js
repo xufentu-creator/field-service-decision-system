@@ -1,36 +1,52 @@
 const CONTENT = {
-  zh: {
-    home: {
-      title: "拍一张照片，看看怎么修、怎么改、多少钱。",
-      subtitle: "上传现场图片，输入你的需求，系统会生成不同方案。",
-      start: "立即开始",
-      principle: "系统不会替你做决定，只会把选择变清楚。"
-    },
-    upload: {
-      title: "上传现场并描述你的目标",
-      generate: "生成方案"
-    },
-    result: {
-      title: "你的方案已经生成",
-      current: "当前现场",
-      boundary: "系统提供结构化方案，最终判断由你决定。"
-    }
-  },
   en: {
     home: {
-      title: "Take a photo. See what it could become — and what it may cost.",
-      subtitle: "Upload your space and compare options.",
-      start: "Start Now",
-      principle: "The system does not make decisions. It structures them."
+      title: "Space Upgrade Decision System｜空间升级决策系统",
+      subtitle: "Turn your space problem into clear upgrade options.\n把你的空间问题变成清晰的升级方案。",
+      start: "Start Evaluation｜开始评估",
+      principle: "Human judgment remains central. The system structures options, but the final decision stays with you.\n人类判断始终是核心，系统提供结构，最终决策由你掌控。"
     },
+
     upload: {
-      title: "Upload and describe your goal",
-      generate: "Generate options"
+      title: "Upload Your Space Problem｜上传你的空间问题",
+      subtitle: "Take a photo or upload an image, then describe your goal.\n拍照或上传图片，并描述你的目标。",
+      photoLabel: "Upload Photo｜上传照片",
+      goalLabel: "What do you want to improve?｜你想改善什么？",
+      generate: "Generate Options｜生成方案"
     },
+
     result: {
-      title: "Your options are ready",
-      current: "Current Condition",
-      boundary: "The system provides structured options. Final judgment is yours."
+      title: "Your Upgrade Options｜你的升级方案",
+      subtitle: "Choose the option that best fits your space and budget.\n请选择最适合你的方案。",
+      currentTitle: "Current Situation｜当前情况",
+      currentDesc: "Based on your uploaded photo and your stated goal.\n基于你的图片和目标分析。",
+      optionsIntro: "Choose the best option for your space｜请选择最适合你的方案：",
+
+      optionA: {
+        title: "Option A — Basic Upgrade｜基础方案",
+        desc1: "✔ Improve cleanliness and clarity｜提升整洁与清晰度",
+        desc2: "✔ Low-cost visual adjustment｜低成本优化",
+        price: "Estimated: $150–300｜预估费用：$150–300",
+        button: "Select & Book｜选择并预约"
+      },
+
+      optionB: {
+        title: "Option B — Recommended Upgrade ⭐｜推荐方案",
+        desc1: "✔ Improve visual appeal｜提升视觉吸引力",
+        desc2: "✔ Better customer attraction｜增强客户吸引力",
+        price: "Estimated: $400–700｜预估费用：$400–700",
+        button: "Select & Book｜选择并预约"
+      },
+
+      optionC: {
+        title: "Option C — Premium Upgrade｜高端方案",
+        desc1: "✔ Full redesign｜全面升级设计",
+        desc2: "✔ High-end transformation｜高端视觉改造",
+        price: "Estimated: $900+｜预估费用：$900+",
+        button: "Select & Book｜选择并预约"
+      }
     }
   }
 };
+
+let lang = "en";
