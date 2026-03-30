@@ -1,148 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Result</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .option-img {
-      width: 100%;
-      max-width: 520px;
-      height: 240px;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
-      margin: 16px 0;
-      background: #f0f0f0;
-    }
+<div class="card">
+  <h3>Option A — Basic Upgrade</h3>
+  <img src="https://via.placeholder.com/500x250" class="option-img">
 
-    .result-btn {
-      display: inline-block;
-      background: #111;
-      color: #fff;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 12px;
-    }
+  <p>✔ Improve cleanliness and clarity</p>
+  <p>✔ Low-cost visual adjustment</p>
+  <p><strong>Estimated: $150–300</strong></p>
 
-    .muted {
-      color: #666;
-    }
-  </style>
-</head>
+  <button>Select This Option</button>
+</div>
 
-<body>
-  <div class="container">
 
-    <h1 id="resultTitle">Your Recommended Options</h1>
+<div class="card">
+  <h3>Option B — Recommended Upgrade</h3>
+  <img src="https://via.placeholder.com/500x250" class="option-img">
 
-    <div class="card">
-      <h3 id="currentTitle">Current Condition</h3>
-      <img id="currentImage" class="option-img" alt="Current space">
-      <p id="currentDesc" class="muted">Based on your uploaded problem and goal.</p>
-    </div>
+  <p>✔ Improve visual appeal</p>
+  <p>✔ Better customer attraction</p>
+  <p><strong>Estimated: $400–700</strong></p>
 
-    <div class="card">
-      <h3 id="optionA">Option A</h3>
-      <img id="imgA" class="option-img" alt="Option A">
-      <p id="priceA">$150–300</p>
-      <p id="descA" class="muted">Description will appear here.</p>
-      <button id="chooseA" class="result-btn">Choose Option A</button>
-    </div>
+  <button>Select This Option</button>
+</div>
 
-    <div class="card">
-      <h3 id="optionB">Option B</h3>
-      <img id="imgB" class="option-img" alt="Option B">
-      <p id="priceB">$400–700</p>
-      <p id="descB" class="muted">Description will appear here.</p>
-      <button id="chooseB" class="result-btn">Choose Option B</button>
-    </div>
 
-    <div class="card">
-      <h3 id="optionC">Option C</h3>
-      <img id="imgC" class="option-img" alt="Option C">
-      <p id="priceC">$900+</p>
-      <p id="descC" class="muted">Description will appear here.</p>
-      <button id="chooseC" class="result-btn">Choose Option C</button>
-    </div>
+<div class="card">
+  <h3>Option C — Premium Upgrade</h3>
+  <img src="https://via.placeholder.com/500x250" class="option-img">
 
-<p id="boundary" class="muted">
-  This system provides structured options based on visible input. 
-  Final decisions, execution, and outcomes remain the responsibility of the user and service provider.  
-</p>
-    
-  </div>
+  <p>✔ Full redesign</p>
+  <p>✔ High-end visual transformation</p>
+  <p><strong>Estimated: $900+</strong></p>
 
-  <script>
-    function makePlaceholder(label) {
-      const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="900" height="500">
-          <rect width="100%" height="100%" fill="#f2f2f2"/>
-          <rect x="40" y="40" width="820" height="420" rx="18" fill="#e8e8e8"/>
-          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-                font-family="Arial, sans-serif" font-size="34" fill="#555">
-            ${label}
-          </text>
-        </svg>
-      `;
-      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-    }
-
-    function setOption(option, titleId, imgId, priceId, descId, btnId) {
-      if (!option) return;
-
-      document.getElementById(titleId).innerText =
-        option.name || "Option";
-
-      document.getElementById(priceId).innerText =
-        option.priceRange || "";
-
-      document.getElementById(descId).innerText =
-        option.description || "No description available.";
-
-      const img = document.getElementById(imgId);
-      img.src = makePlaceholder(option.name || "Preview");
-      img.alt = option.name || "Preview";
-
-      const btn = document.getElementById(btnId);
-      btn.innerText = "I choose this option";
-      btn.onclick = () => {
-        localStorage.setItem("selectedOption", JSON.stringify(option));
-        window.location.href = "booking.html";
-      };
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const saved = localStorage.getItem("optionsData");
-      const userInputs = JSON.parse(localStorage.getItem("userInputs") || "{}");
-
-      document.getElementById("currentImage").src = makePlaceholder("Current Condition");
-      document.getElementById("currentDesc").innerText =
-        `Issue: ${userInputs.currentIssue || "N/A"} | Goal: ${userInputs.desiredResult || "N/A"}`;
-
-      if (!saved) {
-        document.getElementById("boundary").innerText =
-          "No data returned from backend.";
-        return;
-      }
-
-      const data = JSON.parse(saved);
-      const options = data.options || [];
-
-      setOption(options[0], "optionA", "imgA", "priceA", "descA", "chooseA");
-      setOption(options[1], "optionB", "imgB", "priceB", "descB", "chooseB");
-      setOption(options[2], "optionC", "imgC", "priceC", "descC", "chooseC");
-
-      document.getElementById("boundary").innerText =
-        data.boundaryNote ||
-        "The system provides structured options. Final judgment and choice remain with the user.";
-    });
-  </script>
-
-  <script src="content.js"></script>
-<script src="app.js"></script>
-</body>
-</html>
+  <button>Select This Option</button>
+</div>
