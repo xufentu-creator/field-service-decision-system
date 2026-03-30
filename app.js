@@ -1,7 +1,4 @@
-let lang = "en";
-
 function setLang() {
-  if (typeof CONTENT === "undefined") return;
   const c = CONTENT[lang];
 
   if (document.getElementById("title")) {
@@ -13,19 +10,41 @@ function setLang() {
 
   if (document.getElementById("uploadTitle")) {
     document.getElementById("uploadTitle").innerText = c.upload.title;
+    document.getElementById("uploadSubtitle").innerText = c.upload.subtitle;
+    document.getElementById("photoLabel").innerText = c.upload.photoLabel;
+    document.getElementById("goalLabel").innerText = c.upload.goalLabel;
     document.getElementById("generateBtn").innerText = c.upload.generate;
   }
 
   if (document.getElementById("resultTitle")) {
     document.getElementById("resultTitle").innerText = c.result.title;
-  }
+    document.getElementById("resultSubtitle").innerText = c.result.subtitle;
+    document.getElementById("currentTitle").innerText = c.result.currentTitle;
+    document.getElementById("currentDesc").innerText = c.result.currentDesc;
+    document.getElementById("optionsIntro").innerText = c.result.optionsIntro;
 
-  if (document.getElementById("currentTitle")) {
-    document.getElementById("currentTitle").innerText = c.result.current;
-  }
+    document.getElementById("optionATitle").innerText = c.result.optionA.title;
+    document.getElementById("optionADesc1").innerText = c.result.optionA.desc1;
+    document.getElementById("optionADesc2").innerText = c.result.optionA.desc2;
+    document.getElementById("optionAPrice").innerText = c.result.optionA.price;
+    document.getElementById("optionABtn").innerText = c.result.optionA.button;
 
-  if (document.getElementById("boundary")) {
-    document.getElementById("boundary").innerText = c.result.boundary;
+    document.getElementById("optionBTitle").innerText = c.result.optionB.title;
+    document.getElementById("optionBDesc1").innerText = c.result.optionB.desc1;
+    document.getElementById("optionBDesc2").innerText = c.result.optionB.desc2;
+    document.getElementById("optionBPrice").innerText = c.result.optionB.price;
+    document.getElementById("optionBBtn").innerText = c.result.optionB.button;
+
+    document.getElementById("optionCTitle").innerText = c.result.optionC.title;
+    document.getElementById("optionCDesc1").innerText = c.result.optionC.desc1;
+    document.getElementById("optionCDesc2").innerText = c.result.optionC.desc2;
+    document.getElementById("optionCPrice").innerText = c.result.optionC.price;
+    document.getElementById("optionCBtn").innerText = c.result.optionC.button;
+
+    const storedImage = localStorage.getItem("uploadedImage");
+    if (storedImage) {
+      document.getElementById("currentImage").src = storedImage;
+    }
   }
 }
 
@@ -33,99 +52,42 @@ function goUpload() {
   window.location.href = "upload.html";
 }
 
-function goResult() {
-  const currentIssue = document.getElementById("problemInput")?.value || "";
-  const desiredResult = document.getElementById("goalInput")?.value || "";
+function generateOptions() {
+  const fileInput = document.getElementById("photoInput");
+  const userGoal = document.getElementById("userGoal").value.trim();
 
-  const mockData = {
-    requestId: "demo-001",
-    options: [
-      {
-        optionId: "A",
-        name: "Basic Repair",
-        priceRange: "$150–300",
-        description: "Simple repair with the lowest cost and fastest turnaround."
-      },
-      {
-        optionId: "B",
-        name: "Standard Upgrade",
-        priceRange: "$400–700",
-        description: "Balanced solution with better finish and stronger visual improvement."
-      },
-      {
-        optionId: "C",
-        name: "Premium Finish",
-        priceRange: "$900+",
-        description: "More complete upgrade with higher quality finish and stronger long-term value."
-      }
-    ],
-    boundaryNote:
-      "The system provides structured options. Final judgment and choice remain with the user."
-  };
-
-  localStorage.setItem("optionsData", JSON.stringify(mockData));
-  localStorage.setItem(
-    "userInputs",
-    JSON.stringify({
-      currentIssue,
-      desiredResult
-    })
-  );
-
-  window.location.href = "result.html";
-}
-
-function submitBooking() {
-  const selectedOptionRaw = localStorage.getItem("selectedOption");
-  const optionsDataRaw = localStorage.getItem("optionsData");
-
-  if (!selectedOptionRaw || !optionsDataRaw) {
-    const bookingMessage = document.getElementById("bookingMessage");
-    if (bookingMessage) {
-      bookingMessage.innerText = "Missing selected option or request data.";
-    }
+  if (!fileInput.files || fileInput.files.length === 0) {
+    alert("Please upload a photo first.");
     return;
   }
 
-  const selectedOption = JSON.parse(selectedOptionRaw);
-  const optionsData = JSON.parse(optionsDataRaw);
+  const file = fileInput.files[0];
+  const reader = new FileReader();
 
-  const payload = {
-    requestId: optionsData.requestId,
-    optionId: selectedOption.optionId,
-    customerName: document.getElementById("customerName")?.value || "",
-    phone: document.getElementById("phone")?.value || "",
-    email: document.getElementById("email")?.value || "",
-    address: document.getElementById("address")?.value || "",
-    preferredDate: document.getElementById("preferredDate")?.value || "",
-    preferredTime: document.getElementById("preferredTime")?.value || "",
-    notes: document.getElementById("notes")?.value || ""
+  reader.onload = function(e) {
+    localStorage.setItem("uploadedImage", e.target.result);
+    localStorage.setItem("userGoal", userGoal);
+    window.location.href = "result.html";
   };
 
-  console.log("Booking payload:", payload);
-
-  const bookingMessage = document.getElementById("bookingMessage");
-  if (bookingMessage) {
-    bookingMessage.innerText = "Booking saved locally for demo.";
-  }
+  reader.readAsDataURL(file);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
   setLang();
 
-  const photoInput = document.getElementById("photoInput");
-  const photoPreview = document.getElementById("photoPreview");
+  const fileInput = document.getElementById("photoInput");
+  const previewImage = document.getElementById("previewImage");
 
-  if (photoInput && photoPreview) {
-    photoInput.addEventListener("change", function () {
-      const file = this.files && this.files[0];
+  if (fileInput && previewImage) {
+    fileInput.addEventListener("change", function () {
+      const file = fileInput.files[0];
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function (e) {
-        photoPreview.src = e.target.result;
-        photoPreview.style.display = "block";
-        localStorage.setItem("uploadedPhoto", e.target.result);
+      reader.onload = function(e) {
+        previewImage.src = e.target.result;
+        previewImage.style.display = "block";
       };
       reader.readAsDataURL(file);
     });
