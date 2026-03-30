@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="container">
+
+    <h1 id="uploadTitle"></h1>
+    <p id="uploadSubtitle"></p>
+
     <div class="card">
-      <h1 id="uploadTitle">Upload and describe your goal</h1>
-      <p class="muted">Take a photo of the current condition and describe what you want to change.</p>
-
-      <label for="photoInput" class="upload-box">
-        <span>📷 Take or upload a photo</span>
-      </label>
-      <input id="photoInput" type="file" accept="image/*" capture="environment" style="display:none;">
-
-      <img id="photoPreview" style="display:none;width:100%;max-width:520px;border-radius:12px;margin:16px 0;" alt="Preview">
-
-      <textarea id="problemInput" placeholder="What is the current problem?" rows="3"></textarea>
-
-      <textarea id="goalInput" placeholder="What would you like it to become?" rows="3"></textarea>
-
-      <button onclick="goResult()" id="generateBtn">Generate options</button>
+      <label for="photoInput" class="label-text" id="photoLabel"></label>
+      <input type="file" id="photoInput" accept="image/*" capture="environment">
+      <img id="previewImage" class="preview-img" style="display:none;" alt="Preview">
     </div>
+
+    <div class="card">
+      <label for="userGoal" class="label-text" id="goalLabel"></label>
+      <textarea id="userGoal" rows="5" placeholder="Describe your goal..."></textarea>
+    </div>
+
+    <button onclick="generateOptions()" id="generateBtn"></button>
+
   </div>
 
   <script src="content.js"></script>
