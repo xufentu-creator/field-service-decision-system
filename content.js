@@ -2,14 +2,14 @@ const CONTENT = {
   en: {
     home: {
       title: "Space Upgrade Decision System｜空间升级决策系统",
-      subtitle: "Turn your space problem into clear upgrade options.\n把你的空间问题变成清晰的升级方案。",
+      subtitle: "Turn your space problem into clear upgrade options. 把你的空间问题变成清晰的升级方案。",
       start: "Start Evaluation｜开始评估",
-      principle: "Human judgment remains central. The system structures options, but the final decision stays with you.\n人类判断始终是核心，系统提供结构，最终决策由你掌控。"
+      principle: "Human judgment remains central. The system structures options, but the final decision stays with you. 人类判断始终是核心，系统提供结构，最终决策由你掌控。"
     },
 
     upload: {
       title: "Upload Your Space Problem｜上传你的空间问题",
-      subtitle: "Take a photo or upload an image, then describe your goal.\n拍照或上传图片，并描述你的目标。",
+      subtitle: "Take a photo or upload an image, then describe your goal. 拍照或上传图片，并描述你的目标。",
       photoLabel: "Upload Photo｜上传照片",
       goalLabel: "What do you want to improve?｜你想改善什么？",
       generate: "Generate Options｜生成方案"
@@ -17,9 +17,9 @@ const CONTENT = {
 
     result: {
       title: "Your Upgrade Options｜你的升级方案",
-      subtitle: "Choose the option that best fits your space and budget.\n请选择最适合你的方案。",
+      subtitle: "Choose the option that best fits your space and budget. 请选择最适合你的方案。",
       currentTitle: "Current Situation｜当前情况",
-      currentDesc: "Based on your uploaded photo and your stated goal.\n基于你的图片和目标分析。",
+      currentDesc: "Based on your uploaded photo and your stated goal. 基于你的图片和目标分析。",
       optionsIntro: "Choose the best option for your space｜请选择最适合你的方案：",
 
       optionA: {
