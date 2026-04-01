@@ -25,4 +25,19 @@ The final decision remains with the human.
 
 ---
 
+## Current Status
+
+This project is an early prototype.
+
+- End-to-end flow is functional (upload → result → booking)
+- Placeholder images are used for demonstration
+- Backend integration is in progress
+
+This repository demonstrates a decision structure, not a production system.
+
+---
+
+Status: Prototype (v0.1.0)
+
+---
 TUX-133.144~
