@@ -40,4 +40,14 @@ This repository demonstrates a decision structure, not a production system.
 Status: Prototype (v0.1.0)
 
 ---
-TUX-133.144~
+
+## System Layer
+
+TUX-133.144~ (Primary Frequency System)
+
+This repository is part of a broader system layer that ensures:
+
+- human judgment remains the final authority  
+- decision responsibility is not automated  
+- structured options do not replace human choice  
+
