@@ -35,7 +35,6 @@ This project is an early prototype.
 
 This repository demonstrates a decision structure, not a production system.
 
----
 
 Status: Prototype (v0.1.0)
 
