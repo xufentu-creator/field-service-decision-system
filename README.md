@@ -63,3 +63,65 @@ Upload / Describe Request
 → Clear Option Result
 → Booking Path
 → Human Confirmation
+
+Current Status
+
+This project is an early applied prototype.
+
+Current functions include:
+
+upload-based request entry
+result page demonstration
+booking pathway demonstration
+basic decision structure flow
+placeholder images for demonstration
+backend integration in progress
+
+This repository demonstrates a decision structure, not a production-ready commercial system.
+
+Key Concepts
+Field Service Decision System
+Applied Research Prototype
+Human Judgment
+Decision Architecture
+AI Governance
+Complex Systems
+Service Request Structuring
+Human-Confirmed Decisions
+Responsibility Visibility
+Boundary Statement
+
+This system does not replace human decision-making.
+
+It does not provide final professional judgment, legal advice, financial advice, or automated service approval.
+
+Its purpose is to structure information and support clearer human-confirmed decisions.
+
+Final decisions remain with the human user, service provider, or responsible organization.
+
+Relationship to Application Layers
+
+This repository belongs to the applied research prototype layer.
+
+It is positioned between the canonical research framework and possible real-world service platform applications.
+
+Canonical Research
+→ Applied Research Prototype
+→ Practical Service Application
+
+This separation helps preserve the distinction between research foundation, prototype exploration, and commercial application.
+
+---
+
+Author
+
+Xufen Tu
+Independent Interdisciplinary Researcher
+
+Research focus:
+
+Human Judgment · Decision Architecture · AI Governance · Complex Systems · Enterprise Transformation
+
+Canonical research repository:
+
+https://github.com/xufentu-creator/judgment-as-structural-constraint
