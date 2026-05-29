@@ -47,7 +47,7 @@ It focuses on questions such as:
 
 - What information is needed before a service decision?
 - How can complex requests be translated into clearer options?
-- Where does human judgment remain necessary?
+- In which situations does human judgment remain necessary?
 - How can responsibility remain visible when systems assist the decision process?
 - How can a request move from description to evaluation to booking without replacing human confirmation?
 
@@ -63,65 +63,98 @@ Upload / Describe Request
 → Clear Option Result
 → Booking Path
 → Human Confirmation
+```
 
-Current Status
+This flow is intended to show a decision structure, not a fully automated production system.
+
+---
+
+## Current Status
 
 This project is an early applied prototype.
 
 Current functions include:
 
-upload-based request entry
-result page demonstration
-booking pathway demonstration
-basic decision structure flow
-placeholder images for demonstration
-backend integration in progress
+- upload-based request entry
+- result page demonstration
+- booking pathway demonstration
+- basic decision structure flow
+- placeholder images for demonstration
+- backend integration in progress
 
 This repository demonstrates a decision structure, not a production-ready commercial system.
 
-Key Concepts
-Field Service Decision System
-Applied Research Prototype
-Human Judgment
-Decision Architecture
-AI Governance
-Complex Systems
-Service Request Structuring
-Human-Confirmed Decisions
-Responsibility Visibility
-Boundary Statement
+---
+
+## Key Concepts
+
+- Field Service Decision System
+- Applied Research Prototype
+- Human Judgment
+- Decision Architecture
+- AI Governance
+- Complex Systems
+- Service Request Structuring
+- Human-Confirmed Decisions
+- Responsibility Visibility
+
+---
+
+## Boundary Statement
 
 This system does not replace human decision-making.
 
-It does not provide final professional judgment, legal advice, financial advice, or automated service approval.
+It does not provide final professional judgment, legal advice, financial advice, medical advice, or automated service approval.
 
 Its purpose is to structure information and support clearer human-confirmed decisions.
 
 Final decisions remain with the human user, service provider, or responsible organization.
 
-Relationship to Application Layers
+---
+
+## Relationship to Application Layers
 
 This repository belongs to the applied research prototype layer.
 
 It is positioned between the canonical research framework and possible real-world service platform applications.
 
+```text
 Canonical Research
 → Applied Research Prototype
 → Practical Service Application
+```
 
 This separation helps preserve the distinction between research foundation, prototype exploration, and commercial application.
 
 ---
 
-Author
+## Repository Role
 
-Xufen Tu
+This repository should be understood as a research-oriented prototype.
+
+It is not the commercial BB369TECH platform.
+
+It demonstrates how decision architecture and human judgment can be applied to field service scenarios in a structured but non-automated way.
+
+---
+
+## Author
+
+Xufen Tu  
 Independent Interdisciplinary Researcher
 
 Research focus:
 
-Human Judgment · Decision Architecture · AI Governance · Complex Systems · Enterprise Transformation
+**Human Judgment · Decision Architecture · AI Governance · Complex Systems · Enterprise Transformation**
 
 Canonical research repository:
 
 https://github.com/xufentu-creator/judgment-as-structural-constraint
+
+---
+
+## Website
+
+Prototype site:
+
+https://xufentu-creator.github.io/field-service-decision-system/
